@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="h4">{{ 'Editar' if u else 'Nuevo' }} usuario</h2>
+<form method="post" class="col-md-6">
+  <div class="mb-3"><label class="form-label">Nombre</label><input name="nombre" class="form-control" value="{{ u.nombre if u }}" required></div>
+  <div class="mb-3"><label class="form-label">Correo</label><input type="email" name="email" class="form-control" value="{{ u.email if u }}" required></div>
+  <div class="mb-3"><label class="form-label">Contraseña{% if u %} (vacío = no cambiar){% endif %}</label><input type="password" name="password" class="form-control" {{ '' if u else 'required' }}></div>
+  <button class="btn btn-primary">Guardar</button> <a class="btn btn-secondary" href="{{ url_for('usuarios.listar') }}">Cancelar</a>
+</form>
+{% endblock %}

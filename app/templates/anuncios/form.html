@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="h4">{{ 'Editar' if a else 'Nuevo' }} anuncio</h2>
+<form method="post" class="col-md-8">
+  <div class="mb-3"><label class="form-label">Título</label><input name="titulo" class="form-control" value="{{ a.titulo if a }}" required></div>
+  <div class="mb-3"><label class="form-label">Categoría</label><select name="categoria_id" class="form-select" required>
+    {% for c in categorias %}<option value="{{ c.id }}" {{ 'selected' if a and a.categoria_id==c.id }}>{{ c.nombre }}</option>{% endfor %}</select></div>
+  <div class="mb-3"><label class="form-label">Descripción</label><textarea name="descripcion" rows="5" class="form-control" required>{{ a.descripcion if a }}</textarea></div>
+  <button class="btn btn-primary">Guardar</button> <a class="btn btn-secondary" href="{{ url_for('anuncios.listar') }}">Cancelar</a>
+</form>
+{% endblock %}

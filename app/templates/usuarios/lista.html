@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between mb-3"><h2 class="h4">Usuarios</h2><a class="btn btn-success" href="{{ url_for('usuarios.crear') }}">+ Nuevo</a></div>
+<table class="table table-striped"><thead><tr><th>ID</th><th>Nombre</th><th>Correo</th><th></th></tr></thead><tbody>
+{% for u in usuarios %}<tr><td>{{ u.id }}</td><td>{{ u.nombre }}</td><td>{{ u.email }}</td><td class="text-end">
+ <a class="btn btn-sm btn-warning" href="{{ url_for('usuarios.editar', id=u.id) }}">Editar</a>
+ <form class="d-inline" method="post" action="{{ url_for('usuarios.eliminar', id=u.id) }}" onsubmit="return confirm('¿Eliminar usuario y sus anuncios?')"><button class="btn btn-sm btn-danger">Eliminar</button></form>
+</td></tr>{% endfor %}</tbody></table>
+{% endblock %}

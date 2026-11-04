@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between mb-3"><h2 class="h4">Anuncios</h2><a class="btn btn-success" href="{{ url_for('anuncios.crear') }}">+ Nuevo</a></div>
+<div class="table-responsive"><table class="table table-striped"><thead><tr><th>ID</th><th>Título</th><th>Categoría</th><th>Autor</th><th>Fecha</th><th></th></tr></thead><tbody>
+{% for a in anuncios %}<tr><td>{{ a.id }}</td><td><a href="{{ url_for('anuncios.ver', id=a.id) }}">{{ a.titulo }}</a></td><td>{{ a.categoria.nombre }}</td><td>{{ a.usuario.nombre }}</td><td>{{ a.fecha.strftime('%d/%m/%Y') }}</td><td class="text-end">
+ <a class="btn btn-sm btn-warning" href="{{ url_for('anuncios.editar', id=a.id) }}">Editar</a>
+ <form class="d-inline" method="post" action="{{ url_for('anuncios.eliminar', id=a.id) }}" onsubmit="return confirm('¿Eliminar anuncio?')"><button class="btn btn-sm btn-danger">Eliminar</button></form>
+</td></tr>{% endfor %}</tbody></table></div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="h4">{{ 'Editar' if c else 'Nueva' }} categoría</h2>
+<form method="post" class="col-md-6">
+  <div class="mb-3"><label class="form-label">Nombre</label><input name="nombre" class="form-control" value="{{ c.nombre if c }}" required></div>
+  <div class="mb-3"><label class="form-label">Descripción</label><input name="descripcion" class="form-control" value="{{ (c.descripcion or '') if c }}"></div>
+  <button class="btn btn-primary">Guardar</button> <a class="btn btn-secondary" href="{{ url_for('categorias.listar') }}">Cancelar</a>
+</form>
+{% endblock %}
